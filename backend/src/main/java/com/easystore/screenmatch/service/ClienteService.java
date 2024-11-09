@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -16,7 +18,14 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repositorio;
 
-    public void agregarCliente() {
+    public List<ClienteDTO> convierteDatos(List<Cliente> serie){
+        return serie.stream()
+                .map(s -> new ClienteDTO(s.getClienteID(),s.getNombre(),s.getApellido(),s.getTelefono(),
+                        s.getCorreo(),s.getFechaRegistro(),s.getEstado()))
+                .collect(Collectors.toList());
+    }
+
+    /*public void agregarCliente() {
         System.out.println("Escribe el nombre del cliente");
         String nombreCliente = teclado.nextLine();
         nombreCliente = nombreCliente.substring(0, 1).toUpperCase() + nombreCliente.substring(1).toLowerCase();
@@ -30,9 +39,26 @@ public class ClienteService {
         String correoCliente = teclado.nextLine();
         System.out.println("Escribe el estado del cliente");
         String estadoCliente = teclado.nextLine();
+        boolean bEstadoCliente = false;
+        if (estadoCliente.equalsIgnoreCase("Activo")){
+            bEstadoCliente = true;
+        } else if (estadoCliente.equalsIgnoreCase("Inactivo")) {
+            bEstadoCliente = false;
+        }else {
+            System.out.println("Valor incorrecto");
+        }
         estadoCliente = estadoCliente.substring(0,1).toUpperCase() + estadoCliente.substring(1).toLowerCase();
-        Cliente cliente = new Cliente(nombreCliente, apellidoCliente, telefonoCliente, correoCliente, estadoCliente);
+        Cliente cliente = new Cliente(nombreCliente, apellidoCliente, telefonoCliente, correoCliente, bEstadoCliente);
         System.out.println(cliente);
         repositorio.save(cliente);
+    }*/
+
+    public List<ClienteDTO> obtenerTodosClientes(){
+        return convierteDatos(repositorio.findAll());
     }
+
+    public List<ClienteDTO> obtenerTodosConEstado(Boolean estado) {
+        return convierteDatos(repositorio.obtenerTodosConEstado(estado));
+    }
+
 }
