@@ -16,7 +16,7 @@ public class Pedido {
     @Column(name = "fecha_pedido")
     private LocalDate fechaPedido;
     @Column(name = "estado")
-    private String estado;
+    private Boolean estado;
     @Column(name = "total_pedido")
     private Double totalPedido;
     @ManyToOne
@@ -25,16 +25,16 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ItemsPedido> itemsPedidos;
 
-    public Pedido(String estado) {
+    public Pedido(Boolean estado) {
         this.estado = estado;
         this.fechaPedido = LocalDate.now();
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

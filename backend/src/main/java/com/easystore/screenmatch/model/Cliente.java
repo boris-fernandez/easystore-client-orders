@@ -24,17 +24,35 @@ public class Cliente {
     @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
     @Column(name = "estado")
-    private String estado;
+    private Boolean estado;
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pedido> pedidos;
 
-    public Cliente(String nombre, String apellido, Integer telefono, String correo, String estado) {
+    public Cliente() {}
+
+    public Cliente(String nombre, String apellido, Integer telefono, String correo, Boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
         this.estado = estado;
         this.fechaRegistro = LocalDate.now();
+    }
+
+    public Long getClienteID() {
+        return clienteID;
+    }
+
+    public void setClienteID(Long clienteID) {
+        this.clienteID = clienteID;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getNombre() {
@@ -65,11 +83,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
