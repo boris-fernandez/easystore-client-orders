@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     // ...
+    "strict": true,
     "jsx": "react-jsx", // Configuración para JSX
     "baseUrl": ".",
     "paths": {

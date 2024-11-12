@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import ClienteForm from "@/components/ClienteForm"
-import ClienteList from "@/components/ClienteList"
 
 
 function HomePage() {
@@ -22,14 +20,7 @@ function HomePage() {
            pedidos activos y pendientes.</CardDescription>
       </CardHeader>
       <CardContent>
-        <section>
-          <article>
-            <ClienteForm/>
-          </article>
-          <article>
-            <ClienteList/>
-          </article>
-        </section>
+        
       </CardContent>
       <CardFooter>
         <p>Tienda Facil</p>

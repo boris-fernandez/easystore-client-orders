@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import ClienteForm from '../components/ClienteForm';
+import {ClienteForm} from '../components/ClienteForm';
 import ClienteList from "../components/ClienteList";
 
 function ClientesPage() {
@@ -29,9 +29,6 @@ function ClientesPage() {
           </article>
         </section>
       </CardContent>
-      <CardFooter>
-        <p>Tienda Facil</p>
-      </CardFooter>
     </Card>
     </>
   )
