@@ -1,76 +1,57 @@
 import "./App.css";
-import {Search, Home, SquareUser, ShoppingBag, ClipboardList} from "lucide-react"
-import {Sidebar, 
-  SidebarProvider,
-  SidebarTrigger, 
-  SidebarHeader,
-  SidebarContent,
-  SidebarGroup, 
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,} from "@/components/ui/sidebar"
+import AppSidebar from "@/components/ui/AppSidebar";
+import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
+import ClientesPage from "./pages/ClientesPage";
+import PedidosPage from "./pages/PedidosPage";
+import ReportesPage from "./pages/ReportesPage";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from 'react-router-dom';
 
-     // Menu items.
-     const items = [
-      {
-        title: "Search",
-        url: "/search",
-        icon: Search,
-      },
-      {
-        title: "Principal",
-        url: "/",
-        icon: Home,
-      },
-      {
-        title: "Clientes",
-        url: "/clientes",
-        icon: SquareUser,
-      },
-      {
-        title: "Pedidos",
-        url: "/pedidos",
-        icon: ShoppingBag,
-      },
-      {
-        title: "Reportes",
-        url: "/reportes",
-        icon: ClipboardList,
-      },
-    ]
 
 function App() {
-
   return (
-    <>
-        <SidebarProvider>
-        <Sidebar collapsible="icon">     
-        <SidebarTrigger />
-          <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupLabel>Tienda Facil</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {items.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild>
-                        <a href={item.url}>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
-        </Sidebar>
-        </SidebarProvider>
+      <Router   future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+      >
+        <div className="sidebar">
+        <AppSidebar/>
+        </div>
+      <div className="main-content">
+      <Routes>
+            <Route
+                path="/reportes"
+                element={<ReportesPage/>}
+            />
 
-    </>
+            <Route
+                path="/pedidos"
+                element={<PedidosPage/>}
+            />
+
+            <Route
+                path="/clientes"
+                element={<ClientesPage/>}
+            />
+
+            <Route
+                path="/search"
+                element={<SearchPage/>}
+            />
+ 
+            <Route
+                path="/"
+                element={<HomePage/>}
+            />
+        
+      </Routes>
+      </div>
+    </Router>
   );
 }
 
