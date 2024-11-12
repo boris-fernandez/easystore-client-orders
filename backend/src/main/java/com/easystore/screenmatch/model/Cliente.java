@@ -2,7 +2,6 @@ package com.easystore.screenmatch.model;
 
 import jakarta.persistence.*;
 
-import javax.lang.model.element.Name;
 import java.time.LocalDate;
 import java.util.List;
 
