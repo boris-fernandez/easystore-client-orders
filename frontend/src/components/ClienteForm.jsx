@@ -1,67 +1,36 @@
-// src/components/Form.js
-import { useState } from "react";
-import { useForm } from "react-hook-form"; // Usamos react-hook-form para manejar el formulario
-import { formSchema } from "./schemas/formSchema"; // Importamos el esquema de validación
+import { Card, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-const Form = () => {
-  const [formData, setFormData] = useState({});
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    try {
-      formSchema.parse(data);
-      setFormData(data);
-      console.log("Formulario enviado:", data);
-    } catch (err) {
-      console.error(err.errors); 
-    }
-  };
-
+const ClientRegistrationForm = () => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <input
-          {...register("firstName")}
-          placeholder="Nombre"
-          className="input-class"
-        />
-        {errors.firstName && <span>{errors.firstName.message}</span>}
-      </div>
-
-      <div>
-        <input
-          {...register("lastName")}
-          placeholder="Apellido"
-          className="input-class"
-        />
-        {errors.lastName && <span>{errors.lastName.message}</span>}
-      </div>
-
-      <div>
-        <input
-          {...register("phone")}
-          placeholder="Celular"
-          className="input-class"
-        />
-        {errors.phone && <span>{errors.phone.message}</span>}
-      </div>
-
-      <div>
-        <input
-          {...register("email")}
-          placeholder="Email"
-          className="input-class"
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-      </div>
-
-      <button type="submit">Submit</button>
-    </form>
+    <div className="flex justify-center">
+      <Card className="max-w-md w-full">
+        <CardContent>
+          <form className="space-y-6">
+            <div className="text-left">
+              <Label htmlFor="name" className="block">Nombre</Label>
+              <Input id="name" type="text" placeholder="Ingrese su nombre" />
+            </div>
+            <div className="text-left">
+              <Label htmlFor="lastName" className="block">Apellido</Label>
+              <Input id="lastName" type="text" placeholder="Ingrese su apellido" />
+            </div>
+            <div className="text-left">
+              <Label htmlFor="phone" className="block">Teléfono</Label>
+              <Input id="phone" type="tel" placeholder="Ingrese su número" />
+            </div>
+            <div className="text-left">
+              <Label htmlFor="email" className="block">Email</Label>
+              <Input id="email" type="email" placeholder="Ingrese su email" />
+            </div>
+            <Button type="submit">Registrarse</Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
-export default Form;
+export default ClientRegistrationForm;
