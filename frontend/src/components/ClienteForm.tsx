@@ -13,6 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import axios from "axios";
+
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -40,10 +42,18 @@ export function ClienteForm() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+ async function onSubmit(values: z.infer<typeof formSchema>) {
+  try {
+    // Envía los datos del formulario al backend.
+    const response = await axios.post("http://localhost:5000/api/registrar-cliente", values);
+    console.log(response.data);
+    alert("Cliente registrado exitosamente");
+    form.reset(); // Resetea el formulario después de un envío exitoso
+  } catch (error) {
+    console.error("Error al registrar cliente", error);
+    alert("Hubo un error al registrar el cliente.");
+  }
+}
   }
 
   return (
