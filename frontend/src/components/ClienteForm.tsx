@@ -54,7 +54,7 @@ export function ClienteForm() {
     alert("Hubo un error al registrar el cliente.");
   }
 }
-  }
+
 
   return (
     <>
