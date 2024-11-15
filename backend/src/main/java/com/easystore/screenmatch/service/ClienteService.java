@@ -4,8 +4,11 @@ import com.easystore.screenmatch.dto.ClienteDTO;
 import com.easystore.screenmatch.model.Cliente;
 import com.easystore.screenmatch.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -18,47 +21,25 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repositorio;
 
-    public List<ClienteDTO> convierteDatos(List<Cliente> serie){
-        return serie.stream()
+    public List<ClienteDTO> convierteDatos(List<Cliente> cliente){
+        return cliente.stream()
                 .map(s -> new ClienteDTO(s.getClienteID(),s.getNombre(),s.getApellido(),s.getTelefono(),
                         s.getCorreo(),s.getFechaRegistro(),s.getEstado()))
                 .collect(Collectors.toList());
     }
 
-    /*public void agregarCliente() {
-        System.out.println("Escribe el nombre del cliente");
-        String nombreCliente = teclado.nextLine();
-        nombreCliente = nombreCliente.substring(0, 1).toUpperCase() + nombreCliente.substring(1).toLowerCase();
-        System.out.println("Escribe el apellido del cliente");
-        String apellidoCliente = teclado.nextLine();
-        apellidoCliente = apellidoCliente.substring(0,1).toUpperCase() + apellidoCliente.substring(1).toLowerCase();
-        System.out.println("Escribe el telefono del cliente");
-        Integer telefonoCliente = teclado.nextInt();
-        teclado.nextLine();
-        System.out.println("Escribe el correo del cliente");
-        String correoCliente = teclado.nextLine();
-        System.out.println("Escribe el estado del cliente");
-        String estadoCliente = teclado.nextLine();
-        boolean bEstadoCliente = false;
-        if (estadoCliente.equalsIgnoreCase("Activo")){
-            bEstadoCliente = true;
-        } else if (estadoCliente.equalsIgnoreCase("Inactivo")) {
-            bEstadoCliente = false;
-        }else {
-            System.out.println("Valor incorrecto");
-        }
-        estadoCliente = estadoCliente.substring(0,1).toUpperCase() + estadoCliente.substring(1).toLowerCase();
-        Cliente cliente = new Cliente(nombreCliente, apellidoCliente, telefonoCliente, correoCliente, bEstadoCliente);
-        System.out.println(cliente);
-        repositorio.save(cliente);
-    }*/
+    public ClienteDTO guardarCliente(Cliente cliente) {
+        Cliente clienteGuardado = repositorio.save(cliente);
+        return new ClienteDTO(clienteGuardado.getClienteID(),clienteGuardado.getNombre(),clienteGuardado.getApellido(),
+                clienteGuardado.getTelefono(),clienteGuardado.getCorreo(),clienteGuardado.getFechaRegistro(),clienteGuardado.getEstado());
+    }
 
-    public List<ClienteDTO> obtenerTodosClientes(){
+    public List<ClienteDTO> obtenerTodosLosClientes(){
         return convierteDatos(repositorio.findAll());
     }
 
-    public List<ClienteDTO> obtenerTodosConEstado(Boolean estado) {
-        return convierteDatos(repositorio.obtenerTodosConEstado(estado));
+    public List<ClienteDTO> obtenerConEstado(Boolean estado) {
+        return convierteDatos(repositorio.obtenerConEstado(estado));
     }
 
 }
