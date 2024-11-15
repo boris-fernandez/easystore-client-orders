@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ScreenmatchApplicationConsola",
+      "request": "launch",
+      "mainClass": "com.easystore.screenmatch.ScreenmatchApplicationConsola",
+      "projectName": "backend"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-ScreenmatchApplication<backend>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
