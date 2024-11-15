@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import axios from "axios";
 
+const apiUrl = process.env.VITE_API_URL;
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -23,7 +24,7 @@ const formSchema = z.object({
   lastname: z.string().min(2, {
     message: "El apellido debe tener al menos 2 caracteres.",
   }),
-  cel: z.string().min(10, { message: "El celular debe tener al menos 10 caracteres" }), // Cambié a z.string() para validarlo como cadena
+  cel: z.string().min(10, { message: "El celular debe tener al menos 10 caracteres" }), // Cambie a z.string() para validarlo como cadena
   email: z.string().email({ message: "El email no es válido" }),
   estado: z.boolean({ message: "El estado solo puede ser Activo o No Activo" }),
 })
@@ -45,7 +46,7 @@ export function ClienteForm() {
  async function onSubmit(values: z.infer<typeof formSchema>) {
   try {
     // Envía los datos del formulario al backend.
-    const response = await axios.post("http://localhost:5000/api/registrar-cliente", values);
+    const response = await axios.post("${apiUrl}/clientes", values);
     console.log(response.data);
     alert("Cliente registrado exitosamente");
     form.reset(); // Resetea el formulario después de un envío exitoso
