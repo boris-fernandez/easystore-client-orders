@@ -1,5 +1,7 @@
 package com.easystore.screenmatch.dto;
 
+import com.easystore.screenmatch.model.Cliente;
+
 import java.time.LocalDate;
 
 public record ClienteDTO(
