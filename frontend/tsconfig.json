@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    // ...
+    "jsx": "react-jsx", // Configuración para JSX
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  },
+}
