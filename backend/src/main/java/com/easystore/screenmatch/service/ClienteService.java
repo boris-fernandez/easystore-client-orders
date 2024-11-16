@@ -42,4 +42,9 @@ public class ClienteService {
         return convierteDatos(repositorio.obtenerConEstado(estado));
     }
 
+    public void agregarCliente() {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'agregarCliente'");
+    }
+
 }
