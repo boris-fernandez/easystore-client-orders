@@ -4,20 +4,14 @@ import com.easystore.screenmatch.dto.ClienteDTO;
 import com.easystore.screenmatch.model.Cliente;
 import com.easystore.screenmatch.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.net.URI;
-import java.time.LocalDate;
+
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
-    private Scanner teclado = new Scanner(System.in);
-
     @Autowired
     private ClienteRepository repositorio;
 
@@ -38,7 +32,7 @@ public class ClienteService {
         return convierteDatos(repositorio.findAll());
     }
 
-    public List<ClienteDTO> obtenerConEstado(Boolean estado) {
+    public List<ClienteDTO> obtenerConEstado(boolean estado) {
         return convierteDatos(repositorio.obtenerConEstado(estado));
     }
 
