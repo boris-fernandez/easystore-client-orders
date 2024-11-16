@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 public class EnvConfiguration {
-   @PostConstruct
+    @PostConstruct
     public void loadEnvVariables() {
         Dotenv dotenv = Dotenv.configure().load();
 
