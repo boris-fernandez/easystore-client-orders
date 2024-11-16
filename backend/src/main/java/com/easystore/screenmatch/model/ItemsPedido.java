@@ -1,7 +1,15 @@
 package com.easystore.screenmatch.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "itemsPedidoDTO")
 public class ItemsPedido {
@@ -25,43 +33,4 @@ public class ItemsPedido {
         this.precioUnitario = precioUnitario;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Double getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(Double precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    @Override
-    public String toString() {
-        return  "cantidad=" + cantidad +
-                ", precio_unitario=" + precioUnitario +
-                ", pedido=" + pedido +
-                ", producto=" + producto;
-    }
 }
