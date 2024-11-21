@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import PedidoList from "./components/PedidoList";
+import PedidoForm from "./components/PedidoForm";
 
 
 function App() {
@@ -34,6 +36,28 @@ function App() {
         </CardHeader>
         <CardContent >
           <ClienteList/>
+        </CardContent>
+      </Card>
+      </div>
+      <div className="item">
+      <Card>
+        <CardHeader>
+          <CardTitle>Guardar Pedido</CardTitle>
+          <CardDescription>Guardar Pedido</CardDescription>
+        </CardHeader>
+        <CardContent >
+          <PedidoForm/>
+        </CardContent>
+      </Card>
+      </div>      
+      <div className="item">
+      <Card>
+        <CardHeader>
+          <CardTitle>Lista Pedidos</CardTitle>
+          <CardDescription>Manejo de Pedidos</CardDescription>
+        </CardHeader>
+        <CardContent >
+          <PedidoList/>
         </CardContent>
       </Card>
       </div>

@@ -6,7 +6,7 @@ import { Input } from "./ui/input";
 import axios from "axios"
 
 
-const ClientesForm = ({ onClienteAgregado }) => {
+const ClientesForm = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
