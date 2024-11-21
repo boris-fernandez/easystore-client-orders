@@ -6,7 +6,7 @@ import { Input } from "./ui/input";
 import axios from "axios"
 
 
-const ClientesForm = () => {
+const ClientesForm = ({ onClienteAgregado }) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,6 +32,7 @@ const ClientesForm = () => {
       alert("Cliente guardado correctamente.");
 
       form.reset(); // Resetear formulario
+
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error en la solicitud de Axios:", error.response?.data || error.message);
@@ -98,6 +99,24 @@ const ClientesForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="fechaRegistro"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Fecha de Registro</FormLabel>
+              <FormControl>
+                <Input
+                  type="date"
+                  {...field}
+                  placeholder="Selecciona una fecha"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name="estado"

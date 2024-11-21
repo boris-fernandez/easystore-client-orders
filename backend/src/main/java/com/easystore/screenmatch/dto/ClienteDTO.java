@@ -10,7 +10,7 @@ public record ClienteDTO(
         Long id,
         String nombre,
         String apellido,
-        String telefono,
+        String telefono, //se cambio a tipo string
         String correo,
         LocalDate fecha_registro,
         Boolean estado) {

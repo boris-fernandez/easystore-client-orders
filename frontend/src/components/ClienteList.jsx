@@ -41,7 +41,7 @@ const ClienteList = () => {
 
   return (
     <Table>
-      <TableCaption>Lista de Clientes.</TableCaption>
+      <TableCaption>(Actualizar pagina al guardar cliente).</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Id Cliente</TableHead>
@@ -63,8 +63,19 @@ const ClienteList = () => {
               <TableCell>{cliente.telefono}</TableCell>
               <TableCell>{cliente.correo}</TableCell>
               <TableCell>
-                {new Date(cliente.fechaRegistro).toLocaleDateString()}
+                {cliente.fecha_registro && Array.isArray(cliente.fecha_registro)
+                  ? new Date(
+                      cliente.fecha_registro[0],
+                      cliente.fecha_registro[1] - 1, // Mes en JavaScript empieza en 0
+                      cliente.fecha_registro[2]
+                    ).toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : "Fecha no disponible"}
               </TableCell>
+
               <TableCell className="text-right">
                 {cliente.estado ? "Activo" : "Inactivo"}
               </TableCell>

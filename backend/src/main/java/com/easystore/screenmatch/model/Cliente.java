@@ -25,7 +25,7 @@ public class Cliente {
     @Column(name = "apellido")
     private String apellido;
     @Column(name = "telefono")
-    private String telefono;
+    private String telefono;//se cambio a tipo string
     @Column(name = "correo")
     private String correo;
     @Column(name = "fecha_registro")
