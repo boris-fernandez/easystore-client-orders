@@ -56,8 +56,8 @@ const ClienteList = () => {
       <TableBody>
         {clientes.length > 0 ? (
           clientes.map((cliente) => (
-            <TableRow key={cliente.clienteID}>
-              <TableCell>{cliente.clienteID}</TableCell>
+            <TableRow key={cliente.id}>
+              <TableCell>{cliente.id}</TableCell>
               <TableCell>{cliente.nombre}</TableCell>
               <TableCell>{cliente.apellido}</TableCell>
               <TableCell>{cliente.telefono}</TableCell>
