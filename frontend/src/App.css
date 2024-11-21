@@ -50,5 +50,5 @@
 
 .item {
   width: calc(50%);
-
+  padding: 2em;
 }
