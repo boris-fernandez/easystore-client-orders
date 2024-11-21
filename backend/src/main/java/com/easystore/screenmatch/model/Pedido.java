@@ -26,7 +26,7 @@ public class Pedido {
     @Column(name = "estado")
     private Boolean estado;
     @Column(name = "total_pedido")
-    private Double totalPedido;
+    private String totalPedido; //se cambio a tipo string
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente clientes;

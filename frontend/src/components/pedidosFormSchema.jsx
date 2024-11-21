@@ -7,8 +7,8 @@ const pedidosFormSchema = z.object({
     (date) => !isNaN(new Date(date).getTime()),
     "La fecha es inválida"
   ),
-  totalPedido: z.number().min(2, "El total del pedido es requerido"),
-  pedido: z.string().array().optional()
+  totalPedido: z.string().min(2, "El total del pedido es requerido"),
+  pedido: z.string()
 });
 
 

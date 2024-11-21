@@ -9,6 +9,6 @@ public record PedidoDTO(
         Long pedidos_id,
         LocalDate fecha_pedido,
         Boolean estado,
-        Double total_pedido,
+        String total_pedido,//se cambio a tipo string
         List<ItemsPedido> itemsPedidos) {
 }

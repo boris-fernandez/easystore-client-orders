@@ -84,7 +84,7 @@ const PedidoForm = () => {
             <FormItem>
               <FormLabel>Total Pedido</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Total Pedido" {...field} />
+                <Input placeholder="Total Pedido" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
