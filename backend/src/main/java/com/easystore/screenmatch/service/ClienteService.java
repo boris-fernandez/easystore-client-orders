@@ -1,6 +1,7 @@
 package com.easystore.screenmatch.service;
 
 import com.easystore.screenmatch.dto.ClienteDTO;
+import com.easystore.screenmatch.exception.ResourceNotFoundException;
 import com.easystore.screenmatch.model.Cliente;
 import com.easystore.screenmatch.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,14 @@ public class ClienteService {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'agregarCliente'");
     }
+
+    public void borrarCliente(Long id) {
+        if (repositorio.existsById(id)) {
+            repositorio.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Cliente no encontrado con id :: " + id);
+        }
+    }
+
 
 }

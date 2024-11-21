@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"; // Asegúrate de que esta ruta es correcta
 import axios from "axios";
+import {Button} from "@/components/ui/button";
 
 const ClienteList = () => {
   const [clientes, setClientes] = useState([]); // Estado para la lista de clientes
@@ -39,6 +40,20 @@ const ClienteList = () => {
     return <p className="text-red-500">{error}</p>;
   }
 
+  const borrarCliente = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/clientes/${id}`); // Cambia la URL según corresponda
+      const nuevoArray = clientes.filter((cliente) => cliente.id !== id);
+      setClientes(nuevoArray);
+    } catch (err) {
+      console.error("Error al borrar el cliente:", err);
+      setError("No se pudo borrar el cliente.");
+    }
+  };
+  
+
+
+
   return (
     <Table>
       <TableCaption>(Actualizar pagina al guardar cliente).</TableCaption>
@@ -51,6 +66,8 @@ const ClienteList = () => {
           <TableHead>Correo</TableHead>
           <TableHead>Fecha de Registro</TableHead>
           <TableHead className="text-right">Estado</TableHead>
+          <TableHead>Actualizar</TableHead>
+          <TableHead>Borrar</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -78,6 +95,12 @@ const ClienteList = () => {
 
               <TableCell className="text-right">
                 {cliente.estado ? "Activo" : "Inactivo"}
+              </TableCell>
+              <TableCell>
+                    <Button>Actualizar</Button>
+              </TableCell>
+              <TableCell>
+                    <Button onClick={ () => borrarCliente(cliente.id)}>Borrar</Button>
               </TableCell>
             </TableRow>
           ))

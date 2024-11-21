@@ -35,7 +35,7 @@ public class Cliente {
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pedido> pedidos;
 
-    public Cliente(String nombre, String apellido, String telefono, String correo, Boolean estado) {
+    public Cliente(String nombre, String apellido, String telefono, String correo, Boolean estado, LocalDate fechaRegistro) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;

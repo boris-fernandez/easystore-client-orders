@@ -37,4 +37,12 @@ public class ClienteController {
     public List<ClienteDTO> obtenerConEstado(@PathVariable Boolean estado) {
         return service.obtenerConEstado(estado);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> borrarCliente(@PathVariable Long id) {
+        service.borrarCliente(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
