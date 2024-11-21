@@ -25,7 +25,7 @@ public class Cliente {
     @Column(name = "apellido")
     private String apellido;
     @Column(name = "telefono")
-    private Integer telefono;
+    private String telefono;
     @Column(name = "correo")
     private String correo;
     @Column(name = "fecha_registro")
@@ -35,7 +35,7 @@ public class Cliente {
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pedido> pedidos;
 
-    public Cliente(String nombre, String apellido, Integer telefono, String correo, Boolean estado) {
+    public Cliente(String nombre, String apellido, String telefono, String correo, Boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
