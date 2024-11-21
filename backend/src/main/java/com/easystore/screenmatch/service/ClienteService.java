@@ -50,5 +50,21 @@ public class ClienteService {
         }
     }
 
+    
+        public Cliente actualizarCliente(Long id, Cliente clienteDetalles) {
+            Cliente cliente = repositorio.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado para este id :: " + id));
+    
+            cliente.setNombre(clienteDetalles.getNombre());
+            cliente.setApellido(clienteDetalles.getApellido());
+            cliente.setTelefono(clienteDetalles.getTelefono());
+            cliente.setCorreo(clienteDetalles.getCorreo());
+            cliente.setEstado(clienteDetalles.getEstado());
+    
+            final Cliente clienteActualizado = repositorio.save(cliente);
+            return clienteActualizado;
+        }
+    
+    
 
 }
