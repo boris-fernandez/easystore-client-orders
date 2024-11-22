@@ -1,11 +1,19 @@
 package com.easystore.screenmatch.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
+
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "Pedidos")
 public class Pedido {
@@ -18,58 +26,10 @@ public class Pedido {
     @Column(name = "estado")
     private Boolean estado;
     @Column(name = "total_pedido")
-    private Double totalPedido;
+    private String totalPedido; //se cambio a tipo string
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente clientes;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ItemsPedido> itemsPedidos;
-
-    public Pedido(Boolean estado) {
-        this.estado = estado;
-        this.fechaPedido = LocalDate.now();
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
-
-    public Cliente getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(Cliente clientes) {
-        this.clientes = clientes;
-    }
-
-    public LocalDate getFechaPedido() {
-        return fechaPedido;
-    }
-
-    public Double getTotalPedido() {
-        return totalPedido;
-    }
-
-    public List<ItemsPedido> getItemsPedidos() {
-        return itemsPedidos;
-    }
-
-    public void setItemsPedidos(List<ItemsPedido> itemsPedidos) {
-        this.itemsPedidos = itemsPedidos;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return  "fechaPedido=" + fechaPedido +
-                ", estado='" + estado + '\'' +
-                ", totalPedido=" + totalPedido +
-                ", clientes=" + clientes;
-    }
 }

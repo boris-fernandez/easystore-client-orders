@@ -1,23 +1,18 @@
 package com.easystore.screenmatch.service;
 
 import com.easystore.screenmatch.dto.ClienteDTO;
+import com.easystore.screenmatch.exception.ResourceNotFoundException;
 import com.easystore.screenmatch.model.Cliente;
 import com.easystore.screenmatch.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.net.URI;
-import java.time.LocalDate;
+
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
-    private Scanner teclado = new Scanner(System.in);
-
     @Autowired
     private ClienteRepository repositorio;
 
@@ -38,7 +33,7 @@ public class ClienteService {
         return convierteDatos(repositorio.findAll());
     }
 
-    public List<ClienteDTO> obtenerConEstado(Boolean estado) {
+    public List<ClienteDTO> obtenerConEstado(boolean estado) {
         return convierteDatos(repositorio.obtenerConEstado(estado));
     }
 
@@ -46,5 +41,30 @@ public class ClienteService {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'agregarCliente'");
     }
+
+    public void borrarCliente(Long id) {
+        if (repositorio.existsById(id)) {
+            repositorio.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Cliente no encontrado con id :: " + id);
+        }
+    }
+
+    
+        public Cliente actualizarCliente(Long id, Cliente clienteDetalles) {
+            Cliente cliente = repositorio.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado para este id :: " + id));
+    
+            cliente.setNombre(clienteDetalles.getNombre());
+            cliente.setApellido(clienteDetalles.getApellido());
+            cliente.setTelefono(clienteDetalles.getTelefono());
+            cliente.setCorreo(clienteDetalles.getCorreo());
+            cliente.setEstado(clienteDetalles.getEstado());
+    
+            final Cliente clienteActualizado = repositorio.save(cliente);
+            return clienteActualizado;
+        }
+    
+    
 
 }

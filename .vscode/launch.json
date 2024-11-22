@@ -2,6 +2,12 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ScreenmatchApplication",
+      "request": "launch",
+      "mainClass": "com.easystore.screenmatch.ScreenmatchApplication"
+    },
+    {
+      "type": "java",
       "name": "ScreenmatchApplicationConsola",
       "request": "launch",
       "mainClass": "com.easystore.screenmatch.ScreenmatchApplicationConsola",

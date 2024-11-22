@@ -1,24 +1,24 @@
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod"; 
+import { zodResolver } from "@hookform/resolvers/zod";
+import formSchema from "./formSchema"; 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "./ui/form"; 
 import { Input } from "./ui/input"; 
 import axios from "axios"
-import pedidosFormSchema from "./pedidosFormSchema";
 
 
-const PedidoForm = () => {
+const ClientesForm = () => {
   const form = useForm({
-    resolver: zodResolver(pedidosFormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      cliente: "",
+      nombre: "",
+      apellido: "",
+      telefono: "",
+      correo: "",
       estado: true,
-      fechaPedido: "",
-      totalPedido: "",
-      pedido: "",
-    }
+    },
   });
 
-  const API_URL = "http://localhost:8080/pedido";
+  const API_URL = "http://localhost:8080/clientes";
 
   const onSubmit = async (data) => {
     try {
@@ -28,18 +28,18 @@ const PedidoForm = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log("Pedido guardado con éxito:", response.data);
-      alert("Pedido guardado correctamente.");
+      console.log("Cliente guardado con éxito:", response.data);
+      alert("Cliente guardado correctamente.");
 
       form.reset(); // Resetear formulario
 
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error en la solicitud de Axios:", error.response?.data || error.message);
-        alert(`Error al guardar el Pedido: ${error.response?.data?.message || error.message}`);
+        alert(`Error al guardar el cliente: ${error.response?.data?.message || error.message}`);
       } else {
         console.error("Error inesperado:", error);
-        alert("Error al guardar el Pedido. Por favor, inténtalo de nuevo.");
+        alert("Error al guardar el cliente. Por favor, inténtalo de nuevo.");
       }
     }
   };
@@ -49,12 +49,12 @@ const PedidoForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="cliente"
+          name="nombre"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Cliente</FormLabel>
+              <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="Cliente" {...field} />
+                <Input placeholder="Nombre" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -62,10 +62,49 @@ const PedidoForm = () => {
         />
         <FormField
           control={form.control}
-          name="fechaPedido"
+          name="apellido"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Fecha de Pedido</FormLabel>
+              <FormLabel>Apellido</FormLabel>
+              <FormControl>
+                <Input placeholder="Apellido" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="telefono"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Teléfono</FormLabel>
+              <FormControl>
+                <Input placeholder="Teléfono" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="correo"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Correo Electrónico</FormLabel>
+              <FormControl>
+                <Input placeholder="Correo Electrónico" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="fechaRegistro"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Fecha de Registro</FormLabel>
               <FormControl>
                 <Input
                   type="date"
@@ -77,32 +116,7 @@ const PedidoForm = () => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="totalPedido"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Total Pedido</FormLabel>
-              <FormControl>
-                <Input placeholder="Total Pedido" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="pedido"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Pedido</FormLabel>
-              <FormControl>
-                <Input placeholder="Pedido" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="estado"
@@ -116,13 +130,12 @@ const PedidoForm = () => {
             </FormItem>
           )}
         />
-
         <button type="submit" className="btn btn-primary">
-          Guardar Pedido
+          Guardar Cliente
         </button>
       </form>
     </Form>
   );
 };
 
-export default PedidoForm;
+export default ClientesForm;
